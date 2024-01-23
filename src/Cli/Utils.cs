@@ -42,7 +42,7 @@ namespace Cli
             {
                 return operations.Split(",")
                     .Select(op => EnumExtensions.Deserialize<EntityActionOperation>(op))
-                    .Select(op => new EntityAction(Action: op, Fields: null, Policy: null))
+                    .Select(op => new EntityAction(action: op, fields: null, policy: null))
                     .ToArray();
             }
 
@@ -71,7 +71,7 @@ namespace Cli
                 {
                     return operation_elements
                         .Select(op => EnumExtensions.Deserialize<EntityActionOperation>(op))
-                        .Select(op => new EntityAction(Action: op, Fields: null, Policy: null))
+                        .Select(op => new EntityAction(action: op, fields: null, policy: null))
                         .ToArray();
                 }
             }
@@ -100,7 +100,7 @@ namespace Cli
                     // Expand wildcard to all valid operations (except execute)
                     foreach (EntityActionOperation validOp in resolvedOperations)
                     {
-                        result.Add(validOp, new EntityAction(Action: validOp, Fields: null, Policy: null));
+                        result.Add(validOp, new EntityAction(action: validOp, fields: null, policy: null));
                     }
                 }
                 else
@@ -201,7 +201,7 @@ namespace Cli
             {
                 HashSet<string>? fieldsToIncludeSet = fieldsToInclude is not null && fieldsToInclude.Any() ? new HashSet<string>(fieldsToInclude) : null;
                 HashSet<string>? fieldsToExcludeSet = fieldsToExclude is not null && fieldsToExclude.Any() ? new HashSet<string>(fieldsToExclude) : new();
-                return new EntityActionFields(Include: fieldsToIncludeSet, Exclude: fieldsToExcludeSet);
+                return new EntityActionFields(include: fieldsToIncludeSet, exclude: fieldsToExcludeSet);
             }
 
             return null;
@@ -750,7 +750,7 @@ namespace Cli
             // REST is not supported for CosmosDB NoSQL, so we'll forcibly disable it.
             if (isCosmosDbNoSql)
             {
-                return new(Enabled: false);
+                return new(enabled: false);
             }
 
             EntityRestOptions restOptions = new(supportedHttpVerbs);
@@ -784,9 +784,9 @@ namespace Cli
         public static EntityGraphQLOptions ConstructGraphQLTypeDetails(string? graphQL, GraphQLOperation? graphQLOperationsForStoredProcedures)
         {
             EntityGraphQLOptions graphQLType = new(
-                Singular: string.Empty,
-                Plural: string.Empty,
-                Operation: graphQLOperationsForStoredProcedures);
+                singular: string.Empty,
+                plural: string.Empty,
+                operation: graphQLOperationsForStoredProcedures);
 
             // Default state for GraphQL is enabled, so if no value is provided, we enable it
             if (graphQL is null)

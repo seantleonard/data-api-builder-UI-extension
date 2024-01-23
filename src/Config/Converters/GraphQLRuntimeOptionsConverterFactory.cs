@@ -32,7 +32,7 @@ internal class GraphQLRuntimeOptionsConverterFactory : JsonConverterFactory
 
             if (reader.TokenType == JsonTokenType.False)
             {
-                return new GraphQLRuntimeOptions(Enabled: false);
+                return new GraphQLRuntimeOptions(enabled: false);
             }
 
             // Remove the converter so we don't recurse.

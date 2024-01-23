@@ -126,12 +126,12 @@ internal class EntityGraphQLOptionsConverterFactory : JsonConverterFactory
 
             if (reader.TokenType is JsonTokenType.True)
             {
-                return new EntityGraphQLOptions(Singular: string.Empty, Plural: string.Empty, Enabled: true);
+                return new EntityGraphQLOptions(singular: string.Empty, plural: string.Empty, enabled: true);
             }
 
             if (reader.TokenType is JsonTokenType.False || reader.TokenType is JsonTokenType.Null)
             {
-                return new EntityGraphQLOptions(Singular: string.Empty, Plural: string.Empty, Enabled: false);
+                return new EntityGraphQLOptions(singular: string.Empty, plural: string.Empty, enabled: false);
             }
 
             if (reader.TokenType is JsonTokenType.String)

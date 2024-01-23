@@ -232,15 +232,15 @@ namespace Cli
                 Schema: dabSchemaLink,
                 DataSource: dataSource,
                 Runtime: new(
-                    Rest: new(restEnabled, restPath ?? RestRuntimeOptions.DEFAULT_PATH, options.RestRequestBodyStrict is CliBoolean.False ? false : true),
-                    GraphQL: new(graphQLEnabled, graphQLPath),
-                    Host: new(
-                        Cors: new(options.CorsOrigin?.ToArray() ?? Array.Empty<string>()),
-                        Authentication: new(
-                            Provider: options.AuthenticationProvider,
-                            Jwt: (options.Audience is null && options.Issuer is null) ? null : new(options.Audience, options.Issuer)),
-                        Mode: options.HostMode),
-                    BaseRoute: runtimeBaseRoute
+                    rest: new(restEnabled, restPath ?? RestRuntimeOptions.DEFAULT_PATH, options.RestRequestBodyStrict is CliBoolean.False ? false : true),
+                    graphQL: new(graphQLEnabled, graphQLPath),
+                    host: new(
+                        cors: new(options.CorsOrigin?.ToArray() ?? Array.Empty<string>()),
+                        authentication: new(
+                            provider: options.AuthenticationProvider,
+                            jwt: (options.Audience is null && options.Issuer is null) ? null : new(options.Audience, options.Issuer)),
+                        mode: options.HostMode),
+                    baseRoute: runtimeBaseRoute
                 ),
                 Entities: new RuntimeEntities(new Dictionary<string, Entity>()));
 
@@ -399,12 +399,12 @@ namespace Cli
 
             // Create new entity.
             Entity entity = new(
-                Source: source,
-                Rest: restOptions,
-                GraphQL: graphqlOptions,
-                Permissions: permissionSettings,
-                Relationships: null,
-                Mappings: null);
+                source: source,
+                rest: restOptions,
+                graphQL: graphqlOptions,
+                permissions: permissionSettings,
+                relationships: null,
+                mappings: null);
 
             // Add entity to existing runtime config.
             IDictionary<string, Entity> entities = new Dictionary<string, Entity>(initialRuntimeConfig.Entities.Entities)
@@ -680,12 +680,12 @@ namespace Cli
             }
 
             Entity updatedEntity = new(
-                Source: updatedSource,
-                Rest: updatedRestDetails,
-                GraphQL: updatedGraphQLDetails,
-                Permissions: updatedPermissions,
-                Relationships: updatedRelationships,
-                Mappings: updatedMappings);
+                source: updatedSource,
+                rest: updatedRestDetails,
+                graphQL: updatedGraphQLDetails,
+                permissions: updatedPermissions,
+                relationships: updatedRelationships,
+                mappings: updatedMappings);
             IDictionary<string, Entity> entities = new Dictionary<string, Entity>(initialConfig.Entities.Entities)
             {
                 [options.Entity] = updatedEntity
@@ -1000,13 +1000,13 @@ namespace Cli
             }
 
             return new EntityRelationship(
-                Cardinality: updatedCardinality,
-                TargetEntity: options.TargetEntity!,
-                SourceFields: updatedSourceFields ?? Array.Empty<string>(),
-                TargetFields: updatedTargetFields ?? Array.Empty<string>(),
-                LinkingObject: options.LinkingObject,
-                LinkingSourceFields: updatedLinkingSourceFields ?? Array.Empty<string>(),
-                LinkingTargetFields: updatedLinkingTargetFields ?? Array.Empty<string>());
+                cardinality: updatedCardinality,
+                targetEntity: options.TargetEntity!,
+                sourceFields: updatedSourceFields ?? Array.Empty<string>(),
+                targetFields: updatedTargetFields ?? Array.Empty<string>(),
+                linkingObject: options.LinkingObject,
+                linkingSourceFields: updatedLinkingSourceFields ?? Array.Empty<string>(),
+                linkingTargetFields: updatedLinkingTargetFields ?? Array.Empty<string>());
         }
 
         /// <summary>

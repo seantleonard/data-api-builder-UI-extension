@@ -50,7 +50,7 @@ internal class EntityRestOptionsConverterFactory : JsonConverterFactory
         {
             if (reader.TokenType is JsonTokenType.StartObject)
             {
-                EntityRestOptions restOptions = new(Methods: Array.Empty<SupportedHttpVerb>(), Path: null, Enabled: true);
+                EntityRestOptions restOptions = new(methods: Array.Empty<SupportedHttpVerb>(), path: null, enabled: true);
                 while (reader.Read())
                 {
                     if (reader.TokenType is JsonTokenType.EndObject)
@@ -121,9 +121,9 @@ internal class EntityRestOptionsConverterFactory : JsonConverterFactory
             {
                 bool enabled = reader.GetBoolean();
                 return new EntityRestOptions(
-                    Methods: Array.Empty<SupportedHttpVerb>(),
-                    Path: null,
-                    Enabled: enabled);
+                    methods: Array.Empty<SupportedHttpVerb>(),
+                    path: null,
+                    enabled: enabled);
             }
 
             throw new JsonException();

@@ -1140,11 +1140,11 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
             string requestPath,
             HttpStatusCode expectedStatusCode)
         {
-            GraphQLRuntimeOptions graphqlOptions = new(Path: graphQLConfiguredPath);
+            GraphQLRuntimeOptions graphqlOptions = new(path: graphQLConfiguredPath);
 
             DataSource dataSource = new(DatabaseType.MSSQL,
                 GetConnectionStringFromEnvironmentConfig(environment: TestCategory.MSSQL),
-                Options: null);
+                options: null);
 
             RuntimeConfig configuration = InitMinimalRuntimeConfig(dataSource, graphqlOptions, new());
             const string CUSTOM_CONFIG = "custom-config.json";
@@ -1356,11 +1356,11 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
             HttpStatusCode expectedStatusCodeForGraphQL,
             string configurationEndpoint)
         {
-            GraphQLRuntimeOptions graphqlOptions = new(Enabled: isGraphQLEnabled);
-            RestRuntimeOptions restRuntimeOptions = new(Enabled: isRestEnabled);
+            GraphQLRuntimeOptions graphqlOptions = new(enabled: isGraphQLEnabled);
+            RestRuntimeOptions restRuntimeOptions = new(enabled: isRestEnabled);
 
             DataSource dataSource = new(DatabaseType.MSSQL,
-                GetConnectionStringFromEnvironmentConfig(environment: TestCategory.MSSQL), Options: null);
+                GetConnectionStringFromEnvironmentConfig(environment: TestCategory.MSSQL), options: null);
 
             RuntimeConfig configuration = InitMinimalRuntimeConfig(dataSource, graphqlOptions, restRuntimeOptions);
             const string CUSTOM_CONFIG = "custom-config.json";
@@ -1436,22 +1436,22 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
         public async Task ValidateLocationHeaderFieldForPostRequests(EntitySourceType entityType, string requestPath)
         {
 
-            GraphQLRuntimeOptions graphqlOptions = new(Enabled: false);
-            RestRuntimeOptions restRuntimeOptions = new(Enabled: true);
+            GraphQLRuntimeOptions graphqlOptions = new(enabled: false);
+            RestRuntimeOptions restRuntimeOptions = new(enabled: true);
 
             DataSource dataSource = new(DatabaseType.MSSQL,
-                GetConnectionStringFromEnvironmentConfig(environment: TestCategory.MSSQL), Options: null);
+                GetConnectionStringFromEnvironmentConfig(environment: TestCategory.MSSQL), options: null);
 
             RuntimeConfig configuration;
 
             if (entityType is EntitySourceType.StoredProcedure)
             {
-                Entity entity = new(Source: new("get_books", EntitySourceType.StoredProcedure, null, null),
-                              Rest: new(new SupportedHttpVerb[] { SupportedHttpVerb.Get, SupportedHttpVerb.Post }),
-                              GraphQL: null,
-                              Permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_ANONYMOUS) },
-                              Relationships: null,
-                              Mappings: null
+                Entity entity = new(source: new("get_books", EntitySourceType.StoredProcedure, null, null),
+                              rest: new(new SupportedHttpVerb[] { SupportedHttpVerb.Get, SupportedHttpVerb.Post }),
+                              graphQL: null,
+                              permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_ANONYMOUS) },
+                              relationships: null,
+                              mappings: null
                              );
 
                 string entityName = "GetBooks";
@@ -1534,22 +1534,22 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
             string baseRoute,
             string expectedLocationHeader)
         {
-            GraphQLRuntimeOptions graphqlOptions = new(Enabled: false);
-            RestRuntimeOptions restRuntimeOptions = new(Enabled: true);
+            GraphQLRuntimeOptions graphqlOptions = new(enabled: false);
+            RestRuntimeOptions restRuntimeOptions = new(enabled: true);
 
             DataSource dataSource = new(DatabaseType.MSSQL,
-                GetConnectionStringFromEnvironmentConfig(environment: TestCategory.MSSQL), Options: null);
+                GetConnectionStringFromEnvironmentConfig(environment: TestCategory.MSSQL), options: null);
 
             RuntimeConfig configuration;
 
             if (entityType is EntitySourceType.StoredProcedure)
             {
-                Entity entity = new(Source: new("get_books", EntitySourceType.StoredProcedure, null, null),
-                              Rest: new(new SupportedHttpVerb[] { SupportedHttpVerb.Get, SupportedHttpVerb.Post }),
-                              GraphQL: null,
-                              Permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_ANONYMOUS) },
-                              Relationships: null,
-                              Mappings: null
+                Entity entity = new(source: new("get_books", EntitySourceType.StoredProcedure, null, null),
+                              rest: new(new SupportedHttpVerb[] { SupportedHttpVerb.Get, SupportedHttpVerb.Post }),
+                              graphQL: null,
+                              permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_ANONYMOUS) },
+                              relationships: null,
+                              mappings: null
                              );
 
                 string entityName = "GetBooks";
@@ -1562,7 +1562,7 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
 
             const string CUSTOM_CONFIG = "custom-config.json";
 
-            AuthenticationOptions AuthenticationOptions = new(Provider: EasyAuthType.StaticWebApps.ToString(), null);
+            AuthenticationOptions AuthenticationOptions = new(provider: EasyAuthType.StaticWebApps.ToString(), null);
             HostOptions staticWebAppsHostOptions = new(null, AuthenticationOptions);
 
             RuntimeOptions runtimeOptions = configuration.Runtime;
@@ -1715,14 +1715,14 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
         public async Task TestEngineSupportViewsWithoutKeyFieldsInConfigForMsSQL()
         {
             DataSource dataSource = new(DatabaseType.MSSQL,
-                GetConnectionStringFromEnvironmentConfig(environment: TestCategory.MSSQL), Options: null);
+                GetConnectionStringFromEnvironmentConfig(environment: TestCategory.MSSQL), options: null);
             Entity viewEntity = new(
-                Source: new("books_view_all", EntitySourceType.Table, null, null),
-                Rest: new(Enabled: true),
-                GraphQL: new("", ""),
-                Permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_ANONYMOUS) },
-                Relationships: null,
-                Mappings: null
+                source: new("books_view_all", EntitySourceType.Table, null, null),
+                rest: new(enabled: true),
+                graphQL: new("", ""),
+                permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_ANONYMOUS) },
+                relationships: null,
+                mappings: null
             );
 
             RuntimeConfig configuration = InitMinimalRuntimeConfig(dataSource, new(), new(), viewEntity, "books_view_all");
@@ -1802,11 +1802,11 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
             RuntimeConfig config = configProvider.GetConfig();
 
             // Setup configuration
-            AuthenticationOptions AuthenticationOptions = new(Provider: authType.ToString(), null);
+            AuthenticationOptions AuthenticationOptions = new(provider: authType.ToString(), null);
             RuntimeOptions runtimeOptions = new(
-                Rest: new(),
-                GraphQL: new(),
-                Host: new(null, AuthenticationOptions, hostMode)
+                rest: new(),
+                graphQL: new(),
+                host: new(null, AuthenticationOptions, hostMode)
             );
             RuntimeConfig configWithCustomHostMode = config with { Runtime = runtimeOptions };
 
@@ -1844,10 +1844,10 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
         [DataRow(true, false, null, CONFIGURATION_ENDPOINT_V2, DisplayName = "Enabled introspection does not return introspection forbidden error.")]
         public async Task TestSchemaIntrospectionQuery(bool enableIntrospection, bool expectError, string errorMessage, string configurationEndpoint)
         {
-            GraphQLRuntimeOptions graphqlOptions = new(AllowIntrospection: enableIntrospection);
+            GraphQLRuntimeOptions graphqlOptions = new(allowIntrospection: enableIntrospection);
             RestRuntimeOptions restRuntimeOptions = new();
 
-            DataSource dataSource = new(DatabaseType.MSSQL, GetConnectionStringFromEnvironmentConfig(environment: TestCategory.MSSQL), Options: null);
+            DataSource dataSource = new(DatabaseType.MSSQL, GetConnectionStringFromEnvironmentConfig(environment: TestCategory.MSSQL), options: null);
 
             RuntimeConfig configuration = InitMinimalRuntimeConfig(dataSource, graphqlOptions, restRuntimeOptions);
             const string CUSTOM_CONFIG = "custom-config.json";
@@ -1896,10 +1896,10 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
             string columnMapping,
             bool expectError)
         {
-            GraphQLRuntimeOptions graphqlOptions = new(Enabled: globalGraphQLEnabled);
-            RestRuntimeOptions restRuntimeOptions = new(Enabled: true);
+            GraphQLRuntimeOptions graphqlOptions = new(enabled: globalGraphQLEnabled);
+            RestRuntimeOptions restRuntimeOptions = new(enabled: true);
 
-            DataSource dataSource = new(DatabaseType.MSSQL, GetConnectionStringFromEnvironmentConfig(environment: TestCategory.MSSQL), Options: null);
+            DataSource dataSource = new(DatabaseType.MSSQL, GetConnectionStringFromEnvironmentConfig(environment: TestCategory.MSSQL), options: null);
 
             // Configure Entity for testing
             Dictionary<string, string> mappings = new()
@@ -1913,12 +1913,12 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
             }
 
             Entity entity = new(
-                Source: new("graphql_incompatible", EntitySourceType.Table, null, null),
-                Rest: new(Enabled: false),
-                GraphQL: new("graphql_incompatible", "graphql_incompatibles", entityGraphQLEnabled),
-                Permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_ANONYMOUS) },
-                Relationships: null,
-                Mappings: mappings
+                source: new("graphql_incompatible", EntitySourceType.Table, null, null),
+                rest: new(enabled: false),
+                graphQL: new("graphql_incompatible", "graphql_incompatibles", entityGraphQLEnabled),
+                permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_ANONYMOUS) },
+                relationships: null,
+                mappings: mappings
             );
 
             RuntimeConfig configuration = InitMinimalRuntimeConfig(dataSource, graphqlOptions, restRuntimeOptions, entity, "graphqlNameCompat");
@@ -1972,12 +1972,12 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
             string expectedOpenApiTargetContent)
         {
             string swaggerEndpoint = "/swagger";
-            DataSource dataSource = new(DatabaseType.MSSQL, GetConnectionStringFromEnvironmentConfig(environment: TestCategory.MSSQL), Options: null);
+            DataSource dataSource = new(DatabaseType.MSSQL, GetConnectionStringFromEnvironmentConfig(environment: TestCategory.MSSQL), options: null);
 
             RuntimeConfig configuration = InitMinimalRuntimeConfig(
                 dataSource: dataSource,
                 graphqlOptions: new(),
-                restOptions: new(Path: customRestPath));
+                restOptions: new(path: customRestPath));
 
             configuration = configuration
                 with
@@ -2051,12 +2051,12 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
             // Even though this entity is not under test, it must be supplied to the config
             // file creation function.
             Entity requiredEntity = new(
-                Source: new("books", EntitySourceType.Table, null, null),
-                Rest: new(Enabled: false),
-                GraphQL: new("book", "books"),
-                Permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_ANONYMOUS) },
-                Relationships: null,
-                Mappings: null);
+                source: new("books", EntitySourceType.Table, null, null),
+                rest: new(enabled: false),
+                graphQL: new("book", "books"),
+                permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_ANONYMOUS) },
+                relationships: null,
+                mappings: null);
 
             Dictionary<string, Entity> entityMap = new()
         {
@@ -2105,20 +2105,20 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
         {
             // Create the entities under test.
             Entity restEnabledEntity = new(
-                Source: new("books", EntitySourceType.Table, null, null),
-                Rest: new(Enabled: true),
-                GraphQL: new("", "", false),
-                Permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_ANONYMOUS) },
-                Relationships: null,
-                Mappings: null);
+                source: new("books", EntitySourceType.Table, null, null),
+                rest: new(enabled: true),
+                graphQL: new("", "", false),
+                permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_ANONYMOUS) },
+                relationships: null,
+                mappings: null);
 
             Entity restDisabledEntity = new(
-                Source: new("publishers", EntitySourceType.Table, null, null),
-                Rest: new(Enabled: false),
-                GraphQL: new("publisher", "publishers", true),
-                Permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_ANONYMOUS) },
-                Relationships: null,
-                Mappings: null);
+                source: new("publishers", EntitySourceType.Table, null, null),
+                rest: new(enabled: false),
+                graphQL: new("publisher", "publishers", true),
+                permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_ANONYMOUS) },
+                relationships: null,
+                mappings: null);
 
             Dictionary<string, Entity> entityMap = new()
         {
@@ -2174,15 +2174,15 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
         /// <param name="entityMap">Collection of entityName -> Entity object.</param>
         private static void CreateCustomConfigFile(bool globalRestEnabled, Dictionary<string, Entity> entityMap)
         {
-            DataSource dataSource = new(DatabaseType.MSSQL, GetConnectionStringFromEnvironmentConfig(environment: TestCategory.MSSQL), Options: null);
+            DataSource dataSource = new(DatabaseType.MSSQL, GetConnectionStringFromEnvironmentConfig(environment: TestCategory.MSSQL), options: null);
 
             RuntimeConfig runtimeConfig = new(
                 Schema: string.Empty,
                 DataSource: dataSource,
                 Runtime: new(
-                    Rest: new(Enabled: globalRestEnabled),
-                    GraphQL: new(),
-                    Host: new(null, null)
+                    rest: new(enabled: globalRestEnabled),
+                    graphQL: new(),
+                    host: new(null, null)
                 ),
                 Entities: new(entityMap));
 
@@ -2504,12 +2504,12 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
             string entityName = null)
         {
             entity ??= new(
-                Source: new("books", EntitySourceType.Table, null, null),
-                Rest: null,
-                GraphQL: new(Singular: "book", Plural: "books"),
-                Permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_ANONYMOUS) },
-                Relationships: null,
-                Mappings: null
+                source: new("books", EntitySourceType.Table, null, null),
+                rest: null,
+                graphQL: new(singular: "book", plural: "books"),
+                permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_ANONYMOUS) },
+                relationships: null,
+                mappings: null
                 );
 
             entityName ??= "Book";
@@ -2521,12 +2521,12 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
 
             // Adding an entity with only Authorized Access
             Entity anotherEntity = new(
-                Source: new("publishers", EntitySourceType.Table, null, null),
-                Rest: null,
-                GraphQL: new(Singular: "publisher", Plural: "publishers"),
-                Permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_AUTHENTICATED) },
-                Relationships: null,
-                Mappings: null
+                source: new("publishers", EntitySourceType.Table, null, null),
+                rest: null,
+                graphQL: new(singular: "publisher", plural: "publishers"),
+                permissions: new[] { GetMinimalPermissionConfig(AuthorizationResolver.ROLE_AUTHENTICATED) },
+                relationships: null,
+                mappings: null
                 );
             entityMap.Add("Publisher", anotherEntity);
 
@@ -2534,7 +2534,7 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
                 Schema: "IntegrationTestMinimalSchema",
                 DataSource: dataSource,
                 Runtime: new(restOptions, graphqlOptions,
-                    Host: new(Cors: null, Authentication: null, Mode: HostMode.Development)),
+                    host: new(cors: null, authentication: null, mode: HostMode.Development)),
                 Entities: new(entityMap)
             );
         }
@@ -2547,14 +2547,14 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
         public static EntityPermission GetMinimalPermissionConfig(string roleName)
         {
             EntityAction actionForRole = new(
-                Action: EntityActionOperation.All,
-                Fields: null,
-                Policy: new()
+                action: EntityActionOperation.All,
+                fields: null,
+                policy: new()
             );
 
             return new EntityPermission(
-                Role: roleName,
-                Actions: new[] { actionForRole }
+                role: roleName,
+                actions: new[] { actionForRole }
             );
         }
 
@@ -2606,9 +2606,9 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
                 Schema: "testSchema.json",
                 DataSource: dataSource,
                 Runtime: new(
-                    Rest: new(),
-                    GraphQL: new(),
-                    Host: new(null, null)
+                    rest: new(),
+                    graphQL: new(),
+                    host: new(null, null)
                 ),
                 Entities: new(new Dictionary<string, Entity>())
             );
