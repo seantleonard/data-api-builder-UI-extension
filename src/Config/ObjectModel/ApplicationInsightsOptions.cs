@@ -14,10 +14,10 @@ public record ApplicationInsightsOptions
     /// </summary>
     /// <param name="enabled">Indicates whether Application Insights is enabled.</param>
     /// <param name="connectionString">The connection string for Application Insights.</param>
-    public ApplicationInsightsOptions(bool enabled = false, string? connectionString = null)
+    public ApplicationInsightsOptions(bool Enabled = false, string? ConnectionString = null)
     {
-        Enabled = enabled;
-        ConnectionString = connectionString;
+        this.Enabled = Enabled;
+        this.ConnectionString = ConnectionString;
     }
 
     /// <summary>

@@ -1562,7 +1562,7 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
 
             const string CUSTOM_CONFIG = "custom-config.json";
 
-            AuthenticationOptions AuthenticationOptions = new(provider: EasyAuthType.StaticWebApps.ToString(), null);
+            AuthenticationOptions AuthenticationOptions = new(Provider: EasyAuthType.StaticWebApps.ToString(), null);
             HostOptions staticWebAppsHostOptions = new(null, AuthenticationOptions);
 
             RuntimeOptions runtimeOptions = configuration.Runtime;
@@ -1802,7 +1802,7 @@ namespace Azure.DataApiBuilder.Service.Tests.Configuration
             RuntimeConfig config = configProvider.GetConfig();
 
             // Setup configuration
-            AuthenticationOptions AuthenticationOptions = new(provider: authType.ToString(), null);
+            AuthenticationOptions AuthenticationOptions = new(Provider: authType.ToString(), null);
             RuntimeOptions runtimeOptions = new(
                 Rest: new(),
                 GraphQL: new(),

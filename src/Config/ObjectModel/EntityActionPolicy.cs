@@ -15,10 +15,10 @@ public record EntityActionPolicy
     /// </summary>
     /// <param name="request">The request.</param>
     /// <param name="database">The database.</param>
-    public EntityActionPolicy(string? request = null, string? database = null)
+    public EntityActionPolicy(string? Request = null, string? Database = null)
     {
-        Request = request;
-        Database = database;
+        this.Request = Request;
+        this.Database = Database;
     }
 
     /// <summary>

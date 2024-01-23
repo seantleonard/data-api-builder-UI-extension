@@ -7,7 +7,7 @@ namespace Azure.DataApiBuilder.Config.ObjectModel;
 /// The CosmosDB NoSQL connection options.
 /// </summary>
 /// <remarks>This record is mutable.</remarks>
-public record CosmosDbNoSQLDataSourceOptions
+public record CosmosDbNoSQLDataSourceOptions : IDataSourceOptions
 {
     /// <summary>
     /// Name of the default CosmosDB database.
@@ -36,12 +36,12 @@ public record CosmosDbNoSQLDataSourceOptions
     /// <param name="container">Name of the default CosmosDB container.</param>
     /// <param name="schema">Path to the GraphQL schema file.</param>
     /// <param name="graphQLSchema">Raw contents of the GraphQL schema.</param>
-    public CosmosDbNoSQLDataSourceOptions(string? database, string? container, string? schema, string? graphQLSchema)
+    public CosmosDbNoSQLDataSourceOptions(string? Database, string? Container, string? Schema, string? GraphQLSchema)
     {
-        Database = database;
-        Container = container;
-        Schema = schema;
-        GraphQLSchema = graphQLSchema;
+        this.Database = Database;
+        this.Container = Container;
+        this.Schema = Schema;
+        this.GraphQLSchema = GraphQLSchema;
     }
 
     /// <summary>

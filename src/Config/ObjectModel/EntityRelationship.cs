@@ -21,21 +21,21 @@ public record EntityRelationship
     /// <param name="linkingSourceFields">The linking source fields.</param>
     /// <param name="linkingTargetFields">The linking target fields.</param>
     public EntityRelationship(
-        Cardinality cardinality,
-        string targetEntity,
-        string[] sourceFields,
-        string[] targetFields,
-        string? linkingObject,
-        string[] linkingSourceFields,
-        string[] linkingTargetFields)
+        Cardinality Cardinality,
+        string TargetEntity,
+        string[] SourceFields,
+        string[] TargetFields,
+        string? LinkingObject,
+        string[] LinkingSourceFields,
+        string[] LinkingTargetFields)
     {
-        Cardinality = cardinality;
-        TargetEntity = targetEntity;
-        SourceFields = sourceFields;
-        TargetFields = targetFields;
-        LinkingObject = linkingObject;
-        LinkingSourceFields = linkingSourceFields;
-        LinkingTargetFields = linkingTargetFields;
+        this.Cardinality = Cardinality;
+        this.TargetEntity = TargetEntity;
+        this.SourceFields = SourceFields;
+        this.TargetFields = TargetFields;
+        this.LinkingObject = LinkingObject;
+        this.LinkingSourceFields = LinkingSourceFields;
+        this.LinkingTargetFields = LinkingTargetFields;
     }
 
     /// <summary>

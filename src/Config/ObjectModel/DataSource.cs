@@ -44,11 +44,11 @@ public record DataSource
     /// <param name="databaseType">Type of database to use.</param>
     /// <param name="connectionString">Connection string to access the database.</param>
     /// <param name="options">Custom options for the specific database. If there are no options, this could be null.</param>
-    public DataSource(DatabaseType databaseType, string connectionString, Dictionary<string, JsonElement>? options)
+    public DataSource(DatabaseType DatabaseType, string ConnectionString, Dictionary<string, JsonElement>? Options)
     {
-        DatabaseType = databaseType;
-        ConnectionString = connectionString;
-        Options = options;
+        this.DatabaseType = DatabaseType;
+        this.ConnectionString = ConnectionString;
+        this.Options = Options;
     }
 
     /// <summary>
@@ -66,18 +66,18 @@ public record DataSource
         {
             return Options is not null ?
                 (TOptionType)(object)new CosmosDbNoSQLDataSourceOptions(
-                database: ReadStringOption(namingPolicy.ConvertName(nameof(CosmosDbNoSQLDataSourceOptions.Database))),
-                container: ReadStringOption(namingPolicy.ConvertName(nameof(CosmosDbNoSQLDataSourceOptions.Container))),
-                schema: ReadStringOption(namingPolicy.ConvertName(nameof(CosmosDbNoSQLDataSourceOptions.Schema))),
+                Database: ReadStringOption(namingPolicy.ConvertName(nameof(CosmosDbNoSQLDataSourceOptions.Database))),
+                Container: ReadStringOption(namingPolicy.ConvertName(nameof(CosmosDbNoSQLDataSourceOptions.Container))),
+                Schema: ReadStringOption(namingPolicy.ConvertName(nameof(CosmosDbNoSQLDataSourceOptions.Schema))),
                 // The "raw" schema will be provided via the controller to setup config, rather than parsed from the JSON file.
-                graphQLSchema: ReadStringOption(namingPolicy.ConvertName(nameof(CosmosDbNoSQLDataSourceOptions.GraphQLSchema))))
+                GraphQLSchema: ReadStringOption(namingPolicy.ConvertName(nameof(CosmosDbNoSQLDataSourceOptions.GraphQLSchema))))
                 : default;
         }
 
         if (typeof(TOptionType).IsAssignableFrom(typeof(MsSqlOptions)))
         {
             return (TOptionType)(object)new MsSqlOptions(
-                setSessionContext: ReadBoolOption(namingPolicy.ConvertName(nameof(MsSqlOptions.SetSessionContext))));
+                SetSessionContext: ReadBoolOption(namingPolicy.ConvertName(nameof(MsSqlOptions.SetSessionContext))));
         }
 
         throw new NotSupportedException($"The type {typeof(TOptionType).FullName} is not a supported strongly typed options object");

@@ -27,10 +27,10 @@ public record EntityPermission
     /// <param name="role">Name of the role to which defined permission applies.</param>
     /// <param name="actions">An array of what can be performed against the entity for the actions.
     /// This can be written in JSON using shorthand notation, or as a full object, with a custom <c>JsonConverter</c> to convert that into the .NET type.</param>
-    public EntityPermission(string role, EntityAction[] actions)
+    public EntityPermission(string Role, EntityAction[] Actions)
     {
-        Role = role;
-        Actions = actions;
+        this.Role = Role;
+        this.Actions = Actions;
     }
 
     /// <summary>

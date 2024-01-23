@@ -14,11 +14,11 @@ public record GraphQLRuntimeOptions
     /// <param name="enabled">Whether the GraphQL runtime is enabled.</param>
     /// <param name="path">The path for the GraphQL endpoint.</param>
     /// <param name="allowIntrospection">Whether introspection is allowed.</param>
-    public GraphQLRuntimeOptions(bool enabled = true, string path = DEFAULT_PATH, bool allowIntrospection = true)
+    public GraphQLRuntimeOptions(bool Enabled = true, string Path = DEFAULT_PATH, bool AllowIntrospection = true)
     {
-        Enabled = enabled;
-        Path = path;
-        AllowIntrospection = allowIntrospection;
+        this.Enabled = Enabled;
+        this.Path = Path;
+        this.AllowIntrospection = AllowIntrospection;
     }
 
     /// <summary>

@@ -37,11 +37,11 @@ public record EntityRestOptions
     /// <param name="methods">The HTTP verbs that are supported for this entity.</param>
     /// <param name="path">The path at which the REST endpoint for this entity is exposed.</param>
     /// <param name="enabled">Whether the entity is enabled for REST.</param>
-    public EntityRestOptions(SupportedHttpVerb[]? methods = null, string? path = null, bool enabled = true)
+    public EntityRestOptions(SupportedHttpVerb[]? Methods = null, string? Path = null, bool Enabled = true)
     {
-        Methods = methods;
-        Path = path;
-        Enabled = enabled;
+        this.Methods = Methods;
+        this.Path = Path;
+        this.Enabled = Enabled;
     }
 
     public EntityRestOptions()

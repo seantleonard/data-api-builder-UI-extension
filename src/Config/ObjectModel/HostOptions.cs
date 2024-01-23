@@ -29,11 +29,11 @@ public record HostOptions
     /// <param name="cors">The CORS options.</param>
     /// <param name="authentication">The authentication options.</param>
     /// <param name="mode">The host mode.</param>
-    public HostOptions(CorsOptions? cors, AuthenticationOptions? authentication, HostMode mode = HostMode.Production)
+    public HostOptions(CorsOptions? Cors, AuthenticationOptions? Authentication, HostMode Mode = HostMode.Production)
     {
-        Cors = cors;
-        Authentication = authentication;
-        Mode = mode;
+        this.Cors = Cors;
+        this.Authentication = Authentication;
+        this.Mode = Mode;
     }
 
     /// <summary>
@@ -74,13 +74,13 @@ public record HostOptions
         if (Enum.TryParse<EasyAuthType>(authenticationProvider, ignoreCase: true, out _)
             || AuthenticationOptions.SIMULATOR_AUTHENTICATION.Equals(authenticationProvider))
         {
-            AuthenticationOptions = new(provider: authenticationProvider, jwt: null);
+            AuthenticationOptions = new(Provider: authenticationProvider, Jwt: null);
         }
         else
         {
             AuthenticationOptions = new(
-                provider: authenticationProvider,
-                jwt: new(audience, issuer)
+                Provider: authenticationProvider,
+                Jwt: new(audience, issuer)
             );
         }
 

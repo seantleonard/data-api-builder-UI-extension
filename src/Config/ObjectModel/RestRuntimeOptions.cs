@@ -34,11 +34,11 @@ public record RestRuntimeOptions
     /// <param name="enabled">If the REST APIs are enabled.</param>
     /// <param name="path">The URL prefix path at which endpoints for all entities will be exposed.</param>
     /// <param name="requestBodyStrict">Boolean property indicating whether extraneous fields are allowed in request body.</param>
-    public RestRuntimeOptions(bool enabled = true, string path = DEFAULT_PATH, bool requestBodyStrict = true)
+    public RestRuntimeOptions(bool Enabled = true, string Path = DEFAULT_PATH, bool RequestBodyStrict = true)
     {
-        Enabled = enabled;
-        Path = path;
-        RequestBodyStrict = requestBodyStrict;
+        this.Enabled = Enabled;
+        this.Path = Path;
+        this.RequestBodyStrict = RequestBodyStrict;
     }
 
     /// <summary>

@@ -43,19 +43,19 @@ public record Entity
     public const string PROPERTY_METHODS = "methods";
 
     public Entity(
-        EntitySource source,
-        EntityGraphQLOptions graphQL,
-        EntityRestOptions rest,
-        EntityPermission[] permissions,
-        Dictionary<string, string>? mappings,
-        Dictionary<string, EntityRelationship>? relationships)
+        EntitySource Source,
+        EntityGraphQLOptions GraphQL,
+        EntityRestOptions Rest,
+        EntityPermission[] Permissions,
+        Dictionary<string, string>? Mappings,
+        Dictionary<string, EntityRelationship>? Relationships)
     {
-        Source = source;
-        GraphQL = graphQL;
-        Rest = rest;
-        Permissions = permissions;
-        Mappings = mappings;
-        Relationships = relationships;
+        this.Source = Source;
+        this.GraphQL = GraphQL;
+        this.Rest = Rest;
+        this.Permissions = Permissions;
+        this.Mappings = Mappings;
+        this.Relationships = Relationships;
     }
 
     public Entity()

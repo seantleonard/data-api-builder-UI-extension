@@ -2014,7 +2014,7 @@ namespace Azure.DataApiBuilder.Service.Tests.UnitTests
                 Runtime: new(
                     Rest: new(),
                     GraphQL: new(),
-                    Host: new(Cors: null, Authentication: new(provider: authenticationProvider, jwt: null)),
+                    Host: new(Cors: null, Authentication: new(Provider: authenticationProvider, Jwt: null)),
                     BaseRoute: runtimeBaseRoute
                 ),
                 Entities: new(new Dictionary<string, Entity>())

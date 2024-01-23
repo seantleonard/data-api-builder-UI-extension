@@ -17,17 +17,17 @@ public record RuntimeOptions
     /// <param name="baseRoute">The base route.</param>
     /// <param name="telemetry">The telemetry options.</param>
     public RuntimeOptions(
-        RestRuntimeOptions? rest,
-        GraphQLRuntimeOptions? graphQL,
-        HostOptions? host,
-        string? baseRoute = null,
-        TelemetryOptions? telemetry = null)
+        RestRuntimeOptions? Rest,
+        GraphQLRuntimeOptions? GraphQL,
+        HostOptions? Host,
+        string? BaseRoute = null,
+        TelemetryOptions? Telemetry = null)
     {
-        Rest = rest;
-        GraphQL = graphQL;
-        Host = host;
-        BaseRoute = baseRoute;
-        Telemetry = telemetry;
+        this.Rest = Rest;
+        this.GraphQL = GraphQL;
+        this.Host = Host;
+        this.BaseRoute = BaseRoute;
+        this.Telemetry = Telemetry;
     }
 
     /// <summary>

@@ -26,10 +26,10 @@ public record EntityActionFields
     /// </summary>
     /// <param name="exclude">The fields to exclude.</param>
     /// <param name="include">The fields to include.</param>
-    public EntityActionFields(HashSet<string> exclude, HashSet<string>? include = null)
+    public EntityActionFields(HashSet<string> Exclude, HashSet<string>? Include = null)
     {
-        Exclude = exclude;
-        Include = include;
+        this.Exclude = Exclude;
+        this.Include = Include;
     }
 
     /// <summary>

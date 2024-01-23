@@ -7,15 +7,15 @@ namespace Azure.DataApiBuilder.Config.ObjectModel;
 /// Options for MsSql database.
 /// </summary>
 /// <remarks>This record is mutable.</remarks>
-public record MsSqlOptions
+public record MsSqlOptions : IDataSourceOptions
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="MsSqlOptions"/> class.
     /// </summary>
     /// <param name="setSessionContext">The value indicating whether to set the session context.</param>
-    public MsSqlOptions(bool setSessionContext = true)
+    public MsSqlOptions(bool SetSessionContext = true)
     {
-        SetSessionContext = setSessionContext;
+        this.SetSessionContext = SetSessionContext;
     }
 
     /// <summary>

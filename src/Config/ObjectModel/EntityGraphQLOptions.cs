@@ -36,12 +36,12 @@ public record EntityGraphQLOptions
     /// <param name="plural">The pluralisation of the entity. If none is provided a pluralisation of the Singular property is used.</param>
     /// <param name="enabled">Indicates if GraphQL is enabled for the entity.</param>
     /// <param name="operation">When the entity maps to a stored procedure, this represents the GraphQL operation to use, otherwise it will be null.</param>
-    public EntityGraphQLOptions(string singular, string plural, bool enabled = true, GraphQLOperation? operation = null)
+    public EntityGraphQLOptions(string Singular, string Plural, bool Enabled = true, GraphQLOperation? Operation = null)
     {
-        Singular = singular;
-        Plural = plural;
-        Enabled = enabled;
-        Operation = operation;
+        this.Singular = Singular;
+        this.Plural = Plural;
+        this.Enabled = Enabled;
+        this.Operation = Operation;
     }
 
     /// <summary>

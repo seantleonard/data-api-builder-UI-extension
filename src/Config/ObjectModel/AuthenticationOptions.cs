@@ -15,12 +15,6 @@ public record AuthenticationOptions
     /// </summary>
     public string Provider { get; set; } = nameof(EasyAuthType.StaticWebApps);
 
-    public AuthenticationOptions(string provider, JwtOptions? jwt)
-    {
-        Provider = provider;
-        Jwt = jwt;
-    }
-
     /// <summary>
     /// Settings enabling validation of the received JWT token.
     /// Required only when Provider is other than EasyAuth.
@@ -58,10 +52,10 @@ public record AuthenticationOptions
     /// With EasyAuth and Simulator, no Audience or Issuer are expected.</param>
     /// <param name="jwt">Settings enabling validation of the received JWT token.
     /// Required only when Provider is other than EasyAuth.</param>
-    public AuthenticationOptions(string provider = nameof(EasyAuthType.StaticWebApps), JwtOptions? jwt = null)
+    public AuthenticationOptions(string Provider = nameof(EasyAuthType.StaticWebApps), JwtOptions? Jwt = null)
     {
-        Provider = provider;
-        Jwt = jwt;
+        this.Provider = Provider;
+        this.Jwt = Jwt;
     }
 
     /// <summary>

@@ -13,10 +13,10 @@ public record JwtOptions
     /// </summary>
     /// <param name="audience">The audience.</param>
     /// <param name="issuer">The issuer.</param>
-    public JwtOptions(string? audience, string? issuer)
+    public JwtOptions(string? Audience, string? Issuer)
     {
-        Audience = audience;
-        Issuer = issuer;
+        this.Audience = Audience;
+        this.Issuer = Issuer;
     }
 
     /// <summary>

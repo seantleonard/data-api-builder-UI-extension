@@ -14,11 +14,11 @@ public record EntityAction
     /// <param name="action">The entity action.</param>
     /// <param name="fields">The entity action fields.</param>
     /// <param name="policy">The entity action policy.</param>
-    public EntityAction(EntityActionOperation action, EntityActionFields? fields, EntityActionPolicy? policy)
+    public EntityAction(EntityActionOperation Action, EntityActionFields? Fields, EntityActionPolicy? Policy)
     {
-        Action = action;
-        Fields = fields;
-        Policy = policy;
+        this.Action = Action;
+        this.Fields = Fields;
+        this.Policy = Policy;
     }
 
     /// <summary>

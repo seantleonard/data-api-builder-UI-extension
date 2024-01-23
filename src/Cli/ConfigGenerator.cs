@@ -237,8 +237,8 @@ namespace Cli
                     Host: new(
                         Cors: new(options.CorsOrigin?.ToArray() ?? Array.Empty<string>()),
                         Authentication: new(
-                            provider: options.AuthenticationProvider,
-                            jwt: (options.Audience is null && options.Issuer is null) ? null : new(options.Audience, options.Issuer)),
+                            Provider: options.AuthenticationProvider,
+                            Jwt: (options.Audience is null && options.Issuer is null) ? null : new(options.Audience, options.Issuer)),
                         Mode: options.HostMode),
                     BaseRoute: runtimeBaseRoute
                 ),

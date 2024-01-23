@@ -24,10 +24,10 @@ public record CorsOptions
     /// </summary>
     /// <param name="origins">List of allowed origins.</param>
     /// <param name="allowCredentials">Whether to set Access-Control-Allow-Credentials CORS header.</param>
-    public CorsOptions(string[] origins, bool allowCredentials = false)
+    public CorsOptions(string[] Origins, bool AllowCredentials = false)
     {
-        Origins = origins;
-        AllowCredentials = allowCredentials;
+        this.Origins = Origins;
+        this.AllowCredentials = AllowCredentials;
     }
 
     /// <summary>
