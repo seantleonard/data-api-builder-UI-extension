@@ -243,6 +243,45 @@ public record RuntimeConfig
         SetupDataSourcesUsed();
     }
 
+    public RuntimeConfig(RuntimeConfig runtimeConfig)
+    {
+        Schema = runtimeConfig.Schema;
+        Entities = new RuntimeEntities(runtimeConfig.Entities.Entities);
+        _defaultDataSourceName = runtimeConfig._defaultDataSourceName;
+        _dataSourceNameToDataSource = runtimeConfig._dataSourceNameToDataSource;
+        _entityNameToDataSourceName = runtimeConfig._entityNameToDataSourceName;
+        Runtime = new RuntimeOptions
+        {
+            Rest = new RestRuntimeOptions
+            {
+                Enabled = runtimeConfig.IsRestEnabled,
+                Path = runtimeConfig.RestPath
+            },
+            GraphQL = new GraphQLRuntimeOptions
+            {
+                Enabled = runtimeConfig.IsGraphQLEnabled,
+                Path = runtimeConfig.GraphQLPath
+            },
+            Host = new HostOptions
+            {
+                Mode = runtimeConfig.Runtime!.Host?.Mode ?? HostMode.Production,
+                Authentication = runtimeConfig.Runtime!.Host?.Authentication,
+                Cors = new CorsOptions
+                {
+                    Origins = runtimeConfig.Runtime!.Host!.Cors?.Origins ?? new string[0]
+                }
+            }
+        };
+
+        DataSource = new DataSource
+        {
+            ConnectionString = runtimeConfig.DataSource.ConnectionString,
+            // if runtime.DataSource.DatabaseType is in DatabaseType enum,
+            // then set it to that, otherwise set it to DatabaseType.Unknown
+            DatabaseType = runtimeConfig.DataSource.DatabaseType
+        };
+    }
+
     /// <summary>
     /// Gets the DataSource corresponding to the datasourceName.
     /// </summary>

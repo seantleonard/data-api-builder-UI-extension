@@ -21,7 +21,7 @@
 </Router>
 
 @code {
-    private MutableRuntimeConfig? MutableRuntimeConfig { get; set; }
+    private RuntimeConfig? MutableRuntimeConfig { get; set; }
 
 
     protected override async Task OnInitializedAsync()
@@ -63,7 +63,7 @@
             if (RuntimeConfigLoader.TryParseConfig(response, out runtimeConfig))
             {
                 //copy runtimeConfig into mutable config
-                MutableRuntimeConfig = new MutableRuntimeConfig(runtimeConfig);
+                MutableRuntimeConfig = new(runtimeConfig);
             }
         }
         else
